@@ -4,6 +4,6 @@ try:
 except ImportError:
     # python 2 backward compatibility
     # noinspection PyUnresolvedReferences
-    from urllib import urlencode
+    from urllib.parse import urlencode
     # noinspection PyUnresolvedReferences
-    from urlparse import urlparse, urljoin, urlunparse
+    from urllib.parse import urlparse, urljoin, urlunparse

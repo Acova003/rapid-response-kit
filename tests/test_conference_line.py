@@ -42,7 +42,7 @@ class ConferenceLineTestCase(KitTestCase):
 
     def test_handle_partially_qualified(self):
         response = self.app.get('/conference-line/handle?whitelist=%2B14158675309&whitelist=%2B14158675310&From=%2B14158675309')
-        print response.data
+        print(response.data)
         assert '<Gather action="/conference-line/connect" method="GET" numDigits="3">' in response.data
 
     def test_connect(self):
