@@ -53,4 +53,4 @@ class SimpleHelpTestCase(KitTestCase):
 
     def test_handle_invalid(self):
         response = self.app.post('/simplehelp/handle?name=Tommy+Tutone&opt_1=Call%3ACall+Jenny%3A4158675309&opt_2=Info%3ALost+and+Found%3AI+got+your+number', data={'Digits': '3'})
-        assert "Sorry, that's not a valid choice" in str(response.data)
+        assert "Sorry, that\\'s not a valid choice" in str(response.data)
