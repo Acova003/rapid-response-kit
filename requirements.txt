@@ -1,7 +1,7 @@
 args==0.1.0
 clint==0.3.7
 Flask==1.0.3
-gdata==2.0.18
+git+https://github.com/dvska/gdata-python3.git#egg=gdata
 gunicorn==19.9.0
 httplib2
 itsdangerous==0.23

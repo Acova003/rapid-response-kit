@@ -1,6 +1,10 @@
 import os.path
 from flask import render_template, request, flash, redirect
 from clint.textui import colored
+# This import is unused, but fixes an issue with gdata's imports.
+# See https://github.com/dvska/gdata-python3/pull/20 for more info.
+# This line can be removed once that PR is merged.
+import gdata.data as _unused_gdata_data
 import gdata.docs.data
 import gdata.docs.client
 import gdata.spreadsheet.service
