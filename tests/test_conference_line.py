@@ -34,17 +34,17 @@ class ConferenceLineTestCase(KitTestCase):
 
     def test_handle_not_in_whitelist(self):
         response = self.app.get('/conference-line/handle?whitelist=%2B14158675309&whitelist=%2B14158675310&room=1234&From=%2B14155551234')
-        assert 'Sorry, you are not authorized to call this number' in response.data
+        assert 'Sorry, you are not authorized to call this number' in str(response.data)
 
     def test_handle_fully_qualifed(self):
         response = self.app.get('/conference-line/handle?whitelist=%2B14158675309&whitelist=%2B14158675310&room=1234&From=%2B14158675309')
-        assert '<Conference>1234</Conference>' in response.data
+        assert '<Conference>1234</Conference>' in str(response.data)
 
     def test_handle_partially_qualified(self):
         response = self.app.get('/conference-line/handle?whitelist=%2B14158675309&whitelist=%2B14158675310&From=%2B14158675309')
         print(response.data)
-        assert '<Gather action="/conference-line/connect" method="GET" numDigits="3">' in response.data
+        assert '<Gather action="/conference-line/connect" method="GET" numDigits="3">' in str(response.data)
 
     def test_connect(self):
         response = self.app.get('/conference-line/connect?Digits=1234')
-        assert '<Conference>1234</Conference>' in response.data
+        assert '<Conference>1234</Conference>' in str(response.data)

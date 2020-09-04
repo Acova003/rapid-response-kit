@@ -39,18 +39,18 @@ class SimpleHelpTestCase(KitTestCase):
 
     def test_handle(self):
         response = self.app.get('/simplehelp/handle?name=Tommy+Tutone&opt_1=Call%3ACall+Jenny%3A4158675309&opt_2=Info%3ALost+and+Found%3AI+got+your+number')
-        assert 'Thank you for calling Tommy Tutone' in response.data
-        assert 'Call Jenny, press 1' in response.data
-        assert 'Lost and Found, press 2' in response.data
+        assert 'Thank you for calling Tommy Tutone' in str(response.data)
+        assert 'Call Jenny, press 1' in str(response.data)
+        assert 'Lost and Found, press 2' in str(response.data)
 
     def test_handle_call(self):
         response = self.app.post('/simplehelp/handle?name=Tommy+Tutone&opt_1=Call%3ACall+Jenny%3A4158675309&opt_2=Info%3ALost+and+Found%3AI+got+your+number', data={'Digits': '1'})
-        assert '<Dial>4158675309</Dial>' in response.data
+        assert '<Dial>4158675309</Dial>' in str(response.data)
 
     def test_handle_info(self):
         response = self.app.post('/simplehelp/handle?name=Tommy+Tutone&opt_1=Call%3ACall+Jenny%3A4158675309&opt_2=Info%3ALost+and+Found%3AI+got+your+number', data={'Digits': '2'})
-        assert 'I got your number' in response.data
+        assert 'I got your number' in str(response.data)
 
     def test_handle_invalid(self):
         response = self.app.post('/simplehelp/handle?name=Tommy+Tutone&opt_1=Call%3ACall+Jenny%3A4158675309&opt_2=Info%3ALost+and+Found%3AI+got+your+number', data={'Digits': '3'})
-        assert "Sorry, that's not a valid choice" in response.data
+        assert "Sorry, that's not a valid choice" in str(response.data)
