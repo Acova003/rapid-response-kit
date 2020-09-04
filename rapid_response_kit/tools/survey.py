@@ -11,12 +11,12 @@ from twilio.twiml import Response
 def install(app):
     if 'FIREBASE_URL' not in app.config or \
        'FIREBASE_SECRET' not in app.config:
-        print((colored.red(
+        print(colored.red(
                     '''
                     Survey requires Firebase.
                     Please add FIREBASE_URL and FIREBASE_SECRET
                     to rapid_response_kit/utils/config.py
-                    ''')))
+                    '''))
         return
 
     app.config.apps.register('survey', 'Survey', '/survey')
