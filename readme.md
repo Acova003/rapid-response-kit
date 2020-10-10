@@ -15,7 +15,7 @@ resolve and install dependencies.
 
 Please make sure that before you begin you meet the minimum requirements:
 
-- Python 2.7
+- Python 3.7
 - virtualenv
 - pip
 

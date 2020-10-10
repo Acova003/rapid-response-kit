@@ -20,7 +20,7 @@ class RingdownTestCase(KitTestCase):
         self.app.post('/ringdown', data={'numbers': '4158675309\n4158675310',
                                          'twilio_number': 'PNSid'})
 
-        expected_voice_url = 'http://localhost/ringdown/handle?sorry=&stack=%2B14158675309&stack=%2B14158675310'
+        expected_voice_url = 'http://localhost/ringdown/handle?stack=%2B14158675309&stack=%2B14158675310&sorry='
         expected_fallback_url = 'http://twimlets.com/echo?Twiml=%3C%3Fxml+version%3D%221.0%22+encoding%3D%22UTF-8%22%3F%3E%3CResponse%3E%3CSay%3ESystem+is+down+for+maintenance%3C%2FSay%3E%3C%2FResponse%3E'
 
         self.patchio.phone_numbers.update.assert_called_with(
@@ -33,13 +33,13 @@ class RingdownTestCase(KitTestCase):
 
     def test_handle_remaining_stack(self):
         response = self.app.get('/ringdown/handle?stack=%2B14158675309')
-        assert '<Dial' in response.data
-        assert '+14158675309' in response.data
+        assert '<Dial' in str(response.data)
+        assert '+14158675309' in str(response.data)
 
     def test_handle_exhausted_stack(self):
         response = self.app.get('/ringdown/handle')
-        assert 'Sorry, no one answered' in response.data
+        assert 'Sorry, no one answered' in str(response.data)
 
     def test_handle_exhausted_stack_custom(self):
         response = self.app.get('/ringdown/handle?sorry=Custom+Message')
-        assert 'Custom Message' in response.data
+        assert 'Custom Message' in str(response.data)

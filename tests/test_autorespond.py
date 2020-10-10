@@ -19,7 +19,7 @@ class AutorespondTestCase(KitTestCase):
     def test_post_invalid(self):
         response = self.app.post('/auto-respond', data={},
                                  follow_redirects=True)
-        assert 'Please provide a message' in response.data
+        assert 'Please provide a message' in str(response.data)
 
     def test_post_valid_sms(self):
         self.app.post('/auto-respond', data={'sms-message': 'Test Message',
@@ -66,6 +66,3 @@ class AutorespondTestCase(KitTestCase):
             voice_method='GET',
             sms_method='GET',
             sms_url='')
-
-
-
